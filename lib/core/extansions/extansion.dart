@@ -47,6 +47,12 @@ extension PaddingExtensionOnly on BuildContext {
   EdgeInsets get paddingNormalTop => EdgeInsets.only(top: normalValue);
   EdgeInsets get paddingElevatedOnly => const EdgeInsets.only(top: 10, left: 21, right: 30, bottom: 10);
 }
+
+extension PaddingExtensionSymmetric on BuildContext {
+  EdgeInsets get paddingNormal =>  EdgeInsets.symmetric(vertical: normalValue, horizontal: normalValue);
+  EdgeInsets get paddingHigh =>  EdgeInsets.symmetric(vertical: highValue, horizontal: highValue);
+}
+
 extension MarginExtentionAll on BuildContext {
   EdgeInsets get marginlow => const EdgeInsets.all(3);
 }

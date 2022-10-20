@@ -1,6 +1,5 @@
 import 'package:e_commerce_flutter/core/extansions/extansion.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../core/constants/AppString.dart';
 import '../widgets/main_button.dart';
@@ -17,12 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final AppString appString = AppString();
-  final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 46.0, horizontal: 34.0),
+      padding: context.paddingHigh,
       child: Form(
         key: _formKey,
         child: Column(

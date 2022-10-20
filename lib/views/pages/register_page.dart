@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:e_commerce_flutter/core/extansions/extansion.dart';
 import 'package:flutter/material.dart';
 
@@ -17,21 +15,22 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController();
   final AppString appString = AppString();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 46.0, horizontal: 34.0),
+      padding: context.paddingHigh,
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              controller: _emailController,
+              controller: _usernameController,
               validator: (val) =>
-              val!.isEmpty ?  appString.enterUsernameText : null ,
+                  val!.isEmpty ? appString.enterUsernameText : null,
               decoration: InputDecoration(
                 labelText: appString.usernameText,
                 hintText: appString.usernameText,
@@ -41,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
             TextFormField(
               controller: _emailController,
               validator: (val) =>
-                  val!.isValidEmail ? null: appString.enterValidEmail ,
+                  val!.isValidEmail ? null : appString.enterValidEmail,
               decoration: InputDecoration(
                 labelText: appString.emailText,
                 hintText: appString.enterYourMail,
@@ -51,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
             TextFormField(
               controller: _passwordController,
               validator: (val) =>
-              val!.isValidPassword ? null : appString.enterValidPassword,
+                  val!.isValidPassword ? null : appString.enterValidPassword,
               decoration: InputDecoration(
                 labelText: appString.passwordText,
                 hintText: appString.enterPasswordText,
@@ -60,7 +59,13 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(height: context.lowValue),
             MainButton(
               text: appString.register,
-              onTap: () {},
+              onTap: () {
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing form data')),
+                  );
+                }
+              },
             ),
           ],
         ),
